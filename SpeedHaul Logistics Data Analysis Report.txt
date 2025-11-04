@@ -1,0 +1,160 @@
+SpeedHaul Logistics Data Analysis – Project Process and Plan
+🧭 1. Project Overview
+
+This project was developed as part of a data analysis simulation for SpeedHaul Logistics, a logistics and transportation company.
+
+The goal was to:
+
+Analyze delivery data to identify operational inefficiencies,
+
+Develop data-driven insights to improve on-time delivery rates, fuel cost management, and customer satisfaction, and
+
+Create a Power BI dashboard for performance monitoring.
+
+🎯 2. Project Objectives
+
+Examine delivery performance across routes and trucks.
+
+Identify factors contributing to late deliveries and high fuel costs.
+
+Analyze the relationship between delivery time and client satisfaction.
+
+Create a dashboard that enables management to make real-time decisions.
+
+Recommend data-driven strategies to enhance logistics operations.
+
+🧩 3. Dataset Description
+
+File: Data Set - SpeedHaul.xlsx
+
+Column Name				Description
+DeliveryID			Unique identifier for each delivery
+TruckID				Unique ID assigned to each truck
+Route				Delivery route or area
+Average Delivery Time (hrs)	Average delivery time per trip
+On-Time (Yes/No)		Delivery punctuality status
+Fuel Cost (GHS)			Fuel expenditure per trip
+Client Satisfaction (1–5)	Customer satisfaction rating
+Packages Delivered		Number of packages per delivery
+
+Data Size: 100 delivery records across 10 trucks.
+
+⚙️ 4. Tools and Technologies
+Tool						Purpose
+Excel					Initial data cleaning and formatting
+Python 					(Pandas, Matplotlib)	KPI computation and data visualization
+Power BI				Dashboard development and interactive reporting
+DAX (Data Analysis Expressions)		Calculated measures for KPI tracking
+GitHub					Version control and portfolio hosting
+
+🔍 5. Project Process
+Step 1: Data Cleaning (Excel)
+
+Removed empty rows and standardized headers.
+
+Checked for missing values and inconsistent entries in the On-Time column.
+
+Converted numerical columns (Fuel Cost, Delivery Time) to numeric data types.
+
+
+Step 2: Data Analysis (Python)
+
+Performed preliminary analysis using Python:
+
+import pandas as pd
+
+df = pd.read_excel("Data Set - SpeedHaul.xlsx")
+on_time_rate = df[df['On-Time'] == 'Yes'].shape[0] / len(df) * 100
+avg_delivery_time = df['Average Delivery Time (hrs)'].mean()
+avg_satisfaction = df['Client Satisfaction (1-5)'].mean()
+
+
+This generated the base metrics later used in Power BI.
+
+📊 6. KPI Design and DAX Measures (Power BI)
+Created DAX Measures
+KPI				DAX Formula						Description
+Total Deliveries	Total Deliveries = COUNT('Table'[DeliveryID])		Total number of delivery records
+On-Time Deliveries	On-Time Deliveries = CALCULATE(COUNT('Table'[DeliveryID]), 'Table'[On-Time] = "Yes")	Total successful on-time deliveries
+On-Time Rate (%)	On-Time Rate (%) = DIVIDE([On-Time Deliveries], [Total Deliveries]) * 100	Percentage of on-time deliveries
+Average Delivery Time	Average Delivery Time = AVERAGE('Table'[Average Delivery Time (hrs)])	Average time per delivery
+Average Client Satisfaction	Average Client Satisfaction = AVERAGE('Table'[Client Satisfaction])	Mean satisfaction rating
+Total Fuel Cost (GHS)	Total Fuel Cost (GHS) = SUM('Table'[Fuel Cost])	Total fuel expenditure
+Average Packages per Trip	Average Packages per Trip = AVERAGE('Table'[Packages Delivered])	Packages handled per delivery
+
+🧭 7. Dashboard Design and Layout
+Page 1: Operational Insights
+
+
+
+Visuals included:
+
+KPI Cards → On-Time %, Average Delivery Time, Total Deliveries
+
+Pie Chart → On-Time vs Late Deliveries
+
+Bar Chart → Average Delivery Time by Truck (All 10 Trucks)
+
+Column Chart → Trips per Truck
+
+Scatter Plot → Fuel Cost vs Route Distance
+
+
+
+Page 2: Customer & Cost Analysis
+
+Visuals included:
+
+Scatter Chart → Client Satisfaction vs Delivery Time
+
+Column Chart → Fuel Cost by Route
+
+Line Chart → Packages Delivered per Route
+
+KPI Card → Average Satisfaction and Total Fuel Cost
+
+Navigation Buttons → Links between both dashboard pages
+
+
+
+Navigation Setup:
+Each page includes clickable buttons using:
+
+Insert → Buttons → Action → Page Navigation
+Buttons:
+
+“Operational Insights” → links to Page 1
+
+“Customer & Cost Analysis” → links to Page 2
+
+ 8. Key Insights
+
+65% on-time delivery rate, below the ideal 90% benchmark.
+
+Trucks TRK102 and TRK107 have the longest average delivery times.
+
+Fuel costs increase significantly on certain mid-length routes.
+
+Client satisfaction drops sharply when delivery times exceed 4 hours.
+
+Fleet utilization is uneven — some trucks are overworked.
+
+
+🔧 9. Recommendations
+Area				Recommendation					Expected Impact
+Route Efficiency	Use Google OR-Tools for route optimization	Reduce fuel cost & delivery time
+Fleet Management	Balance scheduling across trucks		Extend vehicle lifespan & reduce delays
+Customer Transparency	Implement Real-Time GPS Tracking		Boost customer satisfaction & trust
+Analytics Monitoring	Deploy a Power BI dashboard company-wide	Real-time KPI monitoring
+Continuous Improvement	Conduct monthly data reviews			Maintain performance consistency
+
+
+📈 10. Project Outcomes
+
+Delivered a professional interactive Power BI dashboard.
+
+Produced a data-driven presentation and insights report.
+
+Demonstrated end-to-end analytical workflow — from data collection to business recommendations.
+
+Highlighted how data visualization and optimization tools can drive logistics performance.
